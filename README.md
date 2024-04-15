@@ -26,3 +26,11 @@ Good luck and have fun!
 * Add a comment section
 * Add a direct messaging feature
 * Make all buttons fully functioning
+
+**Website Link**
+
+[Around The U.S.] https://wes-watson.github.io/se_project_aroundtheus/
+
+**Video Link**
+
+[Around The U.S. Video] https://drive.google.com/file/d/1yyE8GbMmxpafMHC_KzrBCN33WCHgNzFF/view?usp=sharing

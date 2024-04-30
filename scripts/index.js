@@ -26,6 +26,10 @@ const initialCards = [
 ];
 
 let closeButton = document.querySelector(".modal__close");
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__discriptor");
+const profileNameInput = document.querySelector("#profile-name-input");
+const profileDescriptionInput = document.querySelector("#profile-descriptor-input")
 
 closeButton.addEventListener("click", function () {
   let modal = document.querySelector(".modal");
@@ -36,7 +40,11 @@ closeButton.addEventListener("click", function () {
 let editButton = document.querySelector(".profile__edit-button");
 
 editButton.addEventListener("click", function () {
+  profileNameInput.value = profileName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  
   let modal = document.querySelector(".modal");
 
   modal.classList.add("modal_open");
 });
+

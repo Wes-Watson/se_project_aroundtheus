@@ -41,7 +41,7 @@
       </footer>
     </div>
 
-    <div class="modal">
+    <div class="modal" id="edit-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <p class="modal__header">Edit Profile</p>
@@ -59,6 +59,30 @@
             id="profile-descriptor-input"
           />
           <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="card-modal-close" type="button"></button>
+        <p class="modal__header">New Place</p>
+        <form class="modal__form" id="add-card-modal-form">
+          <input
+            class="modal__form-input"
+            type="text"
+            name="title"
+            placeholder="Title"
+            id="card-title-input"
+          />
+          <input
+            class="modal__form-input"
+            type="text"
+            name="link"
+            placeholder="Image Link"
+            id="card-link-input"
+          />
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>

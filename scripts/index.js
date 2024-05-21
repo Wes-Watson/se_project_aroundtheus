@@ -43,7 +43,6 @@ const addCardFormElement = document.querySelector("#add-card-modal-form");
 const newCardLink = addCardFormElement.querySelector("#card-link-input");
 const newCardName = addCardFormElement.querySelector("#card-title-input");
 
-
 function closeModal() {
   editProfileModal.classList.remove("modal_open");
 }
@@ -86,7 +85,6 @@ function getCardElement(cardData) {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-
   cardTextEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
@@ -112,4 +110,3 @@ function handleAddFormSubmit(evt) {
 }
 
 addCardFormElement.addEventListener("submit", handleAddFormSubmit);
-

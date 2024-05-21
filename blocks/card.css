@@ -49,5 +49,5 @@
 }
 
 .card__like-button_active {
- background-image: url(../images/Filled-Heart-Real.svg);
+  background-image: url(../images/Filled-Heart.svg);
 }

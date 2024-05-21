@@ -47,3 +47,7 @@
   transition: 0.2s linear;
   cursor: pointer;
 }
+
+.card__like-button_active {
+ background-image: url(../images/Filled-Heart-Real.svg);
+}

@@ -6,13 +6,17 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  display: none;
+  visibility: hidden;
   padding-left: 19px;
   padding-right: 19px;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
 }
 
 .modal_open {
   display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {

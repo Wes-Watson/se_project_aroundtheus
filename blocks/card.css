@@ -2,6 +2,7 @@
   width: 282px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .card__image {
@@ -50,4 +51,23 @@
 
 .card__like-button_active {
   background-image: url(../images/Filled-Heart.svg);
+}
+
+.card__delete-button {
+  background-image: url(../images/Trash.png);
+  position: absolute;
+  height: 19px;
+  width: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  right: 15px;
+  top: 18px;
+}
+
+.card__delete-button:hover {
+  opacity: 60%;
+  transition: 0.2s linear;
+  cursor: pointer;
 }

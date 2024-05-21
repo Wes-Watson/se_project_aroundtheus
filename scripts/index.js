@@ -80,6 +80,11 @@ function getCardElement(cardData) {
   const cardTextEl = cardElement.querySelector(".card__text");
   const cardImageEl = cardElement.querySelector(".card__image");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");

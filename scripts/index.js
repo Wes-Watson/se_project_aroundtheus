@@ -45,10 +45,8 @@ const newCardName = addCardFormElement.querySelector("#card-title-input");
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const closeButtons = document.querySelectorAll(".modal__close");
 
-function closeModal() {
-  editProfileModal.classList.remove("modal_open");
-  addCardModal.classList.remove("modal_open");
-  imagePreviewModal.classList.remove("modal_open");
+function closeModal(modal) {
+  modal.classList.remove("modal_open");
 }
 
 function openModal(modal) {

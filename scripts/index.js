@@ -44,13 +44,26 @@ const newCardLink = addCardFormElement.querySelector("#card-link-input");
 const newCardName = addCardFormElement.querySelector("#card-title-input");
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const closeButtons = document.querySelectorAll(".modal__close");
+const cardOverlay = "#add-card-modal";
+const imageOverlay = "#image-preview-modal";
+const overlays = document.querySelectorAll(".modal");
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
+  document.removeEventListener("keydown", (evt) => {
+    if (evt.key === "Escape") {
+      closeModal(modal);
+    }
+  });
 }
 
 function openModal(modal) {
   modal.classList.add("modal_open");
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape") {
+      closeModal(modal);
+    }
+  });
 }
 
 closeButtons.forEach((button) => {
@@ -130,3 +143,11 @@ function handleAddFormSubmit(evt) {
 }
 
 addCardFormElement.addEventListener("submit", handleAddFormSubmit);
+
+overlays.forEach((overlay) => {
+  overlay.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("modal")) {
+      closeModal(overlay);
+    }
+  });
+});

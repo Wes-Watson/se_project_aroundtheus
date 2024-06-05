@@ -50,20 +50,12 @@ const overlays = document.querySelectorAll(".modal");
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
-  document.removeEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closeModal(modal);
-    }
-  });
+  document.removeEventListener("keydown", Escape);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_open");
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closeModal(modal);
-    }
-  });
+  document.addEventListener("keydown", Escape);
 }
 
 closeButtons.forEach((button) => {
@@ -151,3 +143,12 @@ overlays.forEach((overlay) => {
     }
   });
 });
+
+function Escape(evt) {
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach((modal) => {
+    if (evt.key === "Escape") {
+      closeModal(modal);
+    }
+  });
+}

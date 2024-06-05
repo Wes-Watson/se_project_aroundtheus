@@ -125,6 +125,13 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.21;
+  position: absolute;
+  bottom: 172px;
+}
+
+.modal__error:last-of-type {
+  position: absolute;
+  bottom: 108px;
 }
 
 .modal__button_disabled {

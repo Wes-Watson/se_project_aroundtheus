@@ -50,9 +50,6 @@ const cardOverlay = "#add-card-modal";
 const imageOverlay = "#image-preview-modal";
 const overlays = document.querySelectorAll(".modal");
 
-const card = new Card(initialCards, document.querySelector("#card-template"));
-card.getCard();
-
 function closeModal(modal) {
   modal.classList.remove("modal_open");
   document.removeEventListener("keydown", handleEscape);
@@ -91,7 +88,7 @@ profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 //function getCardElement(cardData) {
 //const cardElement = cardTemplate.cloneNode(true);
 //const cardTextEl = cardElement.querySelector(".card__text");
-//const cardImageEl = cardElement.querySelector(".card__image");
+const cardImageEl = document.querySelector(".card__image");
 //const likeCardButton = cardElement.querySelector(".card__like-button");
 //const deleteCardButton = cardElement.querySelector(".card__delete-button");
 
@@ -101,7 +98,7 @@ profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 //imagePreview.src = cardImageEl.src;
 //imagePreview.alt = cardImageEl.alt;
 //const imagePreviewDescription = document.querySelector(
-//  ".modal__image-description"
+//".modal__image-description"
 //);
 //imagePreviewDescription.textContent = cardData.name;
 //})};
@@ -122,18 +119,12 @@ profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 //return cardElement;
 //}
 
-//initialCards.forEach(({ name, link }) => {
-//const cardElement = getCardElement(cardData);\
-//const cardElement = card.getCard({ name, link });
-//cardListEl.append(cardElement);
-//});
-
-//initialCards.forEach((initialCard) => {
-//const card = new Card(initialCard.name, initialCard.link);
-//const cardElement = card.getCard();
-
-//cardListEl.append(cardElement);
-//})
+initialCards.forEach((item) => {
+  //const cardElement = getCardElement(cardData);
+  const card = new Card(item, "#card-template");
+  const cardElement = card.getCard(item);
+  cardListEl.append(cardElement);
+});
 
 addCardButton.addEventListener("click", function () {
   openModal(addCardModal);
@@ -143,7 +134,12 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const name = newCardName.value;
   const link = newCardLink.value;
-  const cardElement = card.getCard({ name, link });
+  const card = new Card(
+    { name, link },
+    "#card-template",
+    handleImageClick({ name, link })
+  );
+  const cardElement = card.getCard();
   cardListEl.prepend(cardElement);
   closeModal(addCardModal);
   evt.target.reset();
@@ -165,4 +161,15 @@ function handleEscape(evt) {
       closeModal(modal);
     });
   }
+}
+
+function handleImageClick(card) {
+  openModal(imagePreviewModal);
+  const imagePreview = document.querySelector(".modal__card-image");
+  imagePreview.src = card.src;
+  imagePreview.alt = card.alt;
+  const imagePreviewDescription = document.querySelector(
+    ".modal__image-description"
+  );
+  imagePreviewDescription.textContent = card.name;
 }

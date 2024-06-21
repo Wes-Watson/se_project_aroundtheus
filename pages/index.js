@@ -121,7 +121,7 @@ const cardImageEl = document.querySelector(".card__image");
 
 initialCards.forEach((item) => {
   //const cardElement = getCardElement(cardData);
-  const card = new Card(item, "#card-template");
+  const card = new Card(item, "#card-template", handleImageClick);
   const cardElement = card.getCard(item);
   cardListEl.append(cardElement);
 });
@@ -134,11 +134,7 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const name = newCardName.value;
   const link = newCardLink.value;
-  const card = new Card(
-    { name, link },
-    "#card-template",
-    handleImageClick({ name, link })
-  );
+  const card = new Card({ name, link }, "#card-template", handleImageClick);
   const cardElement = card.getCard();
   cardListEl.prepend(cardElement);
   closeModal(addCardModal);
@@ -166,10 +162,11 @@ function handleEscape(evt) {
 function handleImageClick(card) {
   openModal(imagePreviewModal);
   const imagePreview = document.querySelector(".modal__card-image");
-  imagePreview.src = card.src;
-  imagePreview.alt = card.alt;
+  const cardImage = document.querySelector(".card__image");
+  imagePreview.src = cardImage.src;
+  imagePreview.alt = cardImage.alt;
   const imagePreviewDescription = document.querySelector(
     ".modal__image-description"
   );
-  imagePreviewDescription.textContent = card.name;
+  imagePreviewDescription.textContent = cardImage.alt;
 }

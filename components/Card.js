@@ -42,10 +42,6 @@ export default class Card {
     return this._cardElement;
   }
 
-  _handleImageClick() {
-    console.log("sup");
-  }
-
   getCard() {
     this._element = this._getTemplate();
     this._setEventListeners();

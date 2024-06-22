@@ -1,5 +1,7 @@
 import Card from "../components/Card.js";
 
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -49,6 +51,10 @@ const closeButtons = document.querySelectorAll(".modal__close");
 const cardOverlay = "#add-card-modal";
 const imageOverlay = "#image-preview-modal";
 const overlays = document.querySelectorAll(".modal");
+const imagePreview = document.querySelector(".modal__card-image");
+const imagePreviewDescription = document.querySelector(
+  ".modal__image-description"
+);
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
@@ -85,42 +91,7 @@ function handleProfileFormSubmit(evt) {
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
-//function getCardElement(cardData) {
-//const cardElement = cardTemplate.cloneNode(true);
-//const cardTextEl = cardElement.querySelector(".card__text");
-const cardImageEl = document.querySelector(".card__image");
-//const likeCardButton = cardElement.querySelector(".card__like-button");
-//const deleteCardButton = cardElement.querySelector(".card__delete-button");
-
-//function handleImageClick() { cardImageEl.addEventListener("click", () => {
-//openModal(imagePreviewModal);
-//const imagePreview = document.querySelector(".modal__card-image");
-//imagePreview.src = cardImageEl.src;
-//imagePreview.alt = cardImageEl.alt;
-//const imagePreviewDescription = document.querySelector(
-//".modal__image-description"
-//);
-//imagePreviewDescription.textContent = cardData.name;
-//})};
-
-//handleImageClick();
-
-//deleteCardButton.addEventListener("click", () => {
-//cardElement.remove();
-//});
-
-//likeCardButton.addEventListener("click", () => {
-//likeCardButton.classList.toggle("card__like-button_active");
-//});
-
-//cardTextEl.textContent = cardData.name;
-//cardImageEl.src = cardData.link;
-//cardImageEl.alt = cardData.name;
-//return cardElement;
-//}
-
 initialCards.forEach((item) => {
-  //const cardElement = getCardElement(cardData);
   const card = new Card(item, "#card-template", handleImageClick);
   const cardElement = card.getCard(item);
   cardListEl.append(cardElement);
@@ -161,12 +132,26 @@ function handleEscape(evt) {
 
 function handleImageClick(card) {
   openModal(imagePreviewModal);
-  const imagePreview = document.querySelector(".modal__card-image");
-  const cardImage = document.querySelector(".card__image");
-  imagePreview.src = cardImage.src;
-  imagePreview.alt = cardImage.alt;
-  const imagePreviewDescription = document.querySelector(
-    ".modal__image-description"
-  );
-  imagePreviewDescription.textContent = cardImage.alt;
+  imagePreview.src = card.link;
+  imagePreview.alt = card.name;
+  imagePreviewDescription.textContent = card.name;
 }
+
+const validationVariables = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editProfileForm = document.querySelector("#edit-profile-modal-form");
+const addCardForm = document.querySelector("#add-card-modal-form");
+const profileFormValidator = new FormValidator(
+  validationVariables,
+  editProfileForm
+);
+profileFormValidator.enableValidation();
+
+const cardFormValidator = new FormValidator(validationVariables, addCardForm);
+cardFormValidator.enableValidation();

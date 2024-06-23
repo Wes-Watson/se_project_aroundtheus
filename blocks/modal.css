@@ -44,6 +44,12 @@
   cursor: pointer;
 }
 
+.modal__close:hover {
+  opacity: 60%;
+  transition: 0.2s linear;
+  cursor: pointer;
+}
+
 .modal__header {
   font-family: Inter, Arial, sans-serif;
   font-weight: 900;
@@ -98,6 +104,12 @@
   cursor: pointer;
 }
 
+.modal__button:hover:not(:disabled) {
+  opacity: 80%;
+  transition: 0.2s linear;
+  cursor: pointer;
+}
+
 .modal__image-container {
   margin: auto;
   position: relative;
@@ -138,6 +150,7 @@
   opacity: 30%;
   background-color: #fff;
   color: #808080;
+  cursor: default;
 }
 
 @media screen and (max-width: 635px) and (min-width: 320px) {

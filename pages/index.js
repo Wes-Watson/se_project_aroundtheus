@@ -91,9 +91,14 @@ function handleProfileFormSubmit(evt) {
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  const cardElement = card.getCard(cardData);
+  return cardElement;
+}
+
 initialCards.forEach((item) => {
-  const card = new Card(item, "#card-template", handleImageClick);
-  const cardElement = card.getCard(item);
+  const cardElement = createCard(item);
   cardListEl.append(cardElement);
 });
 
@@ -105,8 +110,7 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const name = newCardName.value;
   const link = newCardLink.value;
-  const card = new Card({ name, link }, "#card-template", handleImageClick);
-  const cardElement = card.getCard();
+  const cardElement = createCard({ name, link });
   cardListEl.prepend(cardElement);
   closeModal(addCardModal);
   evt.target.reset();

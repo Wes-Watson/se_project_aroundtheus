@@ -1,6 +1,9 @@
-import Card from "../components/Card.js";
+import Card from "../src/components/Card.js";
 
-import FormValidator from "../components/FormValidator.js";
+import FormValidator from "../src/components/FormValidator.js";
+
+import Section from "../src/utils/Section.js";
+
 
 const initialCards = [
   {
@@ -97,10 +100,6 @@ function createCard(cardData) {
   return cardElement;
 }
 
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardListEl.append(cardElement);
-});
 
 addCardButton.addEventListener("click", function () {
   openModal(addCardModal);
@@ -159,3 +158,10 @@ profileFormValidator.enableValidation();
 
 const cardFormValidator = new FormValidator(validationVariables, addCardForm);
 cardFormValidator.enableValidation();
+
+
+const cardListCreator = new Section ({items:initialCards, renderer: (item)=>{
+  const cardElement = createCard(item);
+  cardListCreator.setItem(cardElement);
+}}, cardListEl);
+cardListCreator.renderItems();

@@ -1,0 +1,11 @@
+{
+  "name": "se_project_aroundtheus",
+  "version": "0.0.1",
+  "description": "Triple Ten Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "git repository"
+  },
+  "author": "Wes Watson",
+  "license": "ISC"
+}

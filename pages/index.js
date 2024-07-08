@@ -4,6 +4,9 @@ import FormValidator from "../src/components/FormValidator.js";
 
 import Section from "../src/utils/Section.js";
 
+//import PopupWithForm from "../src/components/sPopupWithForm.js";
+
+import PopupWithImage from "../src/components/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -100,7 +103,6 @@ function createCard(cardData) {
   return cardElement;
 }
 
-
 addCardButton.addEventListener("click", function () {
   openModal(addCardModal);
 });
@@ -159,9 +161,14 @@ profileFormValidator.enableValidation();
 const cardFormValidator = new FormValidator(validationVariables, addCardForm);
 cardFormValidator.enableValidation();
 
-
-const cardListCreator = new Section ({items:initialCards, renderer: (item)=>{
-  const cardElement = createCard(item);
-  cardListCreator.setItem(cardElement);
-}}, cardListEl);
+const cardListCreator = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      cardListCreator.setItem(cardElement);
+    },
+  },
+  cardListEl
+);
 cardListCreator.renderItems();

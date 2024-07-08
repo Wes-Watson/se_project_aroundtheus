@@ -6,7 +6,9 @@ import Section from "../src/utils/Section.js";
 
 //import PopupWithForm from "../src/components/sPopupWithForm.js";
 
-import PopupWithImage from "../src/components/PopupWithImage.js";
+//import PopupWithImage from "../src/components/PopupWithImage.js";
+
+import UserInfo from "../src/components/UserInfo.js";
 
 const initialCards = [
   {

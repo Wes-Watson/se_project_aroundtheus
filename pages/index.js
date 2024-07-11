@@ -4,8 +4,6 @@ import FormValidator from "../src/components/FormValidator.js";
 
 import Section from "../src/utils/Section.js";
 
-//import Popup from "../src/components/Popup.js";
-
 import PopupWithForm from "../src/components/PopupWithForm.js";
 
 import PopupWithImage from "../src/components/PopupWithImage.js";
@@ -41,35 +39,22 @@ const imagePreviewDescription = document.querySelector(
   ".modal__image-description"
 );
 
-//function closeModal(modal) {
-// modal.classList.remove("modal_open");
-// document.removeEventListener("keydown", handleEscape);
-//}
-
-//function openModal(modal) {
-//modal.classList.add("modal_open");
-//document.addEventListener("keydown", handleEscape);
-//}
-
-//closeButtons.forEach((button) => {
-//const modal = button.closest(".modal");
-//button.addEventListener("click", () => closeModal(modal));
-//});
-
 const editProfileButton = document.querySelector(".profile__edit-button");
 
 editProfileButton.addEventListener("click", function () {
-  profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-
+  const currentUser = userInfo.getUserInfo();
+  profileNameInput.value = currentUser.name;
+  profileDescriptionInput.value = currentUser.job;
   newProfileModal.open();
 });
 
 const profileFormElement = document.querySelector(".modal__form");
 
 function handleProfileFormSubmit() {
-  profileName.textContent = profileNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  userInfo.setUserInfo({
+    name: profileNameInput.value,
+    job: profileDescriptionInput.value,
+  });
   newProfileModal.close();
 }
 
@@ -93,22 +78,6 @@ function handleAddFormSubmit(evt) {
   addCardFormElement.reset();
   newCardCreatorModal.close();
 }
-
-//overlays.forEach((overlay) => {
-//overlay.addEventListener("click", function (evt) {
-//if (evt.target.classList.contains("modal")) {
-//closeModal(overlay);
-//}
-//});
-//});
-
-//function handleEscape(evt) {
-//if (evt.key === "Escape") {
-//overlays.forEach((modal) => {
-//closeModal(modal);
-//});
-//}
-//}
 
 function handleImageClick(card) {
   newImageModal.open(card);
@@ -145,9 +114,6 @@ const cardListCreator = new Section(
 );
 cardListCreator.renderItems();
 
-//const cardForm = new PopupWithForm("#add-card-modal", handleAddFormSubmit);
-//cardForm.setEventListeners();
-
 const newImageModal = new PopupWithImage("#image-preview-modal");
 newImageModal.setEventListeners();
 
@@ -162,3 +128,8 @@ const newProfileModal = new PopupWithForm(
   handleProfileFormSubmit
 );
 newProfileModal.setEventListeners();
+
+const userInfo = new UserInfo({
+  job: ".profile__discriptor",
+  name: ".profile__name",
+});

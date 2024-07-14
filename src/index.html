@@ -7,14 +7,14 @@
     <meta name="description" content="Around The Us Social Page" />
     <meta name="keywords" content="Travel, Share, Community" />
     <title>Around The Us</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header">
         <img
           class="header__logo"
-          src="./images/Header-Logo.svg"
+          src="<%=require('./images/Header-Logo.svg')%>"
           alt="Around The U.S. Logo"
         />
       </header>
@@ -22,7 +22,7 @@
         <section class="profile">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Profile Image"
           />
           <div class="profile__container">
@@ -143,6 +143,6 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" type="module"></script>
+    
   </body>
 </html>

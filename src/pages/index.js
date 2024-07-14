@@ -1,16 +1,18 @@
-import Card from "../src/components/Card.js";
+import Card from "../components/Card.js";
 
-import FormValidator from "../src/components/FormValidator.js";
+import FormValidator from "../components/FormValidator.js";
 
-import Section from "../src/utils/Section.js";
+import Section from "../utils/Section.js";
 
-import PopupWithForm from "../src/components/PopupWithForm.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
-import PopupWithImage from "../src/components/PopupWithImage.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
-import UserInfo from "../src/components/UserInfo.js";
+import UserInfo from "../components/UserInfo.js";
 
-import { initialCards } from "../src/utils/constants.js";
+import { initialCards } from "../utils/constants.js";
+
+import "./index.css";
 
 const profileCloseButton = document.querySelector("#profile-modal-close");
 const profileName = document.querySelector(".profile__name");

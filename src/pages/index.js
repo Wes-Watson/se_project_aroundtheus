@@ -55,9 +55,10 @@ editProfileButton.addEventListener("click", function () {
 const profileFormElement = document.querySelector(".modal__form");
 
 function handleProfileFormSubmit() {
+  const formValues = newProfileModal._getInputValues();
   userInfo.setUserInfo({
-    name: profileNameInput.value,
-    job: profileDescriptionInput.value,
+    name: formValues.name,
+    job: formValues.discriptor,
   });
   newProfileModal.close();
 }
@@ -72,9 +73,10 @@ addCardButton.addEventListener("click", function () {
   newCardCreatorModal.open();
 });
 
-function handleAddFormSubmit(evt) {
-  const name = newCardName.value;
-  const link = newCardLink.value;
+function handleAddFormSubmit() {
+  const formValues = newCardCreatorModal._getInputValues();
+  const name = formValues.title;
+  const link = formValues.link;
   const cardElement = createCard({ name, link });
   cardListCreator.setItem(cardElement);
   addCardFormElement.reset();

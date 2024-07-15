@@ -6,7 +6,7 @@ export default class Section {
   }
 
   setItem(element) {
-    this._cardList.append(element);
+    this._cardList.prepend(element);
   }
 
   renderItems() {

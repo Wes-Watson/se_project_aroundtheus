@@ -2,7 +2,7 @@ import Card from "../components/Card.js";
 
 import FormValidator from "../components/FormValidator.js";
 
-import Section from "../utils/Section.js";
+import Section from "../components/Section.js";
 
 import PopupWithForm from "../components/PopupWithForm.js";
 
@@ -13,6 +13,8 @@ import UserInfo from "../components/UserInfo.js";
 import { initialCards } from "../utils/constants.js";
 
 import "./index.css";
+
+import { validationVariables } from "../utils/constants.js";
 
 const profileCloseButton = document.querySelector("#profile-modal-close");
 const profileName = document.querySelector(".profile__name");
@@ -60,8 +62,6 @@ function handleProfileFormSubmit() {
   newProfileModal.close();
 }
 
-profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
   const cardElement = card.getCard(cardData);
@@ -76,7 +76,7 @@ function handleAddFormSubmit(evt) {
   const name = newCardName.value;
   const link = newCardLink.value;
   const cardElement = createCard({ name, link });
-  cardListEl.prepend(cardElement);
+  cardListCreator.setItem(cardElement);
   addCardFormElement.reset();
   newCardCreatorModal.close();
 }
@@ -85,23 +85,16 @@ function handleImageClick(card) {
   newImageModal.open(card);
 }
 
-const validationVariables = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-const editProfileForm = document.querySelector("#edit-profile-modal-form");
-const addCardForm = document.querySelector("#add-card-modal-form");
 const profileFormValidator = new FormValidator(
   validationVariables,
-  editProfileForm
+  profileFormElement
 );
 profileFormValidator.enableValidation();
 
-const cardFormValidator = new FormValidator(validationVariables, addCardForm);
+const cardFormValidator = new FormValidator(
+  validationVariables,
+  addCardFormElement
+);
 cardFormValidator.enableValidation();
 
 const cardListCreator = new Section(

@@ -4,6 +4,8 @@ class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
+    this._submitButton = this._popup.querySelector(".modal__button");
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -24,6 +26,16 @@ class PopupWithForm extends Popup {
     });
 
     super.setEventListeners();
+  }
+
+  handleLoad(isLoading, loadingText) {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+      console.log("loading");
+      console.log(this._submitButton);
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 }
 

@@ -1,6 +1,5 @@
 export default class Section {
-  constructor({ items, renderer }, cardListSelector) {
-    this._items = items;
+  constructor({ renderer }, cardListSelector) {
     this._renderer = renderer;
     this._cardList = cardListSelector;
   }
@@ -9,8 +8,8 @@ export default class Section {
     this._cardList.prepend(element);
   }
 
-  renderItems() {
-    this._items.forEach((item) => {
+  renderItems(items) {
+    items.forEach((item) => {
       this._renderer(item);
     });
   }

@@ -249,6 +249,8 @@ const api = new API({
   },
 });
 
+//user Api
+
 api
   .getUserInfo()
   .then((data) => {

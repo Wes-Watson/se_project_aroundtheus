@@ -66,6 +66,7 @@ export default class Card {
     this._cardImage.src = this.link;
     this._cardImage.alt = this.name;
     this._element.querySelector(".card__text").textContent = this.name;
+    this.handleLikeButton(this._isLiked);
     return this._element;
   }
 }

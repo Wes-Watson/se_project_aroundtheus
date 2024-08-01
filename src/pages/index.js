@@ -69,7 +69,7 @@ function handleProfileFormSubmit({ name, discriptor }) {
     .updateUserInfo(name, discriptor)
     .then((data) => {
       console.log(data);
-      userInfo.setUserInfo({ name: name, discriptor: discriptor });
+      userInfo.setUserInfo({ name: name, about: discriptor });
       newProfileModal.close();
     })
     .catch((err) => {

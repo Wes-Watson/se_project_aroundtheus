@@ -64,11 +64,20 @@ editProfileButton.addEventListener("click", function () {
 const profileFormElement = document.querySelector(".modal__form");
 
 function handleProfileFormSubmit({ name, discriptor }) {
-  api.updateUserInfo(name, discriptor).then((data) => {
-    console.log(data);
-    userInfo.setUserInfo({ name: name, job: discriptor });
-  });
-  newProfileModal.close();
+  newProfileModal.handleLoad(true, "Saving...");
+  api
+    .updateUserInfo(name, discriptor)
+    .then((data) => {
+      console.log(data);
+      userInfo.setUserInfo({ name: name, discriptor: discriptor });
+      newProfileModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      newProfileModal.handleLoad(false);
+    });
 }
 
 function handleYesButtonClick() {
@@ -106,9 +115,8 @@ function handleLikeButtonClick(card) {
   if (card.checkLike()) {
     api
       .removeLike(card.id)
-      .then((res) => {
-        card.handleLikeButton(res.isLiked);
-        card.isLiked = res.isLiked;
+      .then(() => {
+        card.handleLikeButton(card.isLiked);
       })
       .catch((err) => {
         console.error(err);
@@ -117,8 +125,8 @@ function handleLikeButtonClick(card) {
     api
       .likeCard(card.id)
       .then((res) => {
-        card.handleLikeButton(res.isLiked);
         card.isLiked = res.isLiked;
+        card.handleLikeButton(card.isLiked);
       })
       .catch((err) => {
         console.error(err);
@@ -135,12 +143,14 @@ profileImageCover.addEventListener("click", function () {
 });
 
 function handleAddFormSubmit(data) {
+  newCardCreatorModal.handleLoad(true, "Saving...");
   api
     .addCard({ name: data.title, link: data.link })
     .then((data) => {
-      newCardCreatorModal.handleLoad(true);
       const cardElement = createCard(data);
       cardListCreator.setItem(cardElement);
+      addCardFormElement.reset();
+      newCardCreatorModal.close();
     })
     .catch((err) => {
       console.error(err);
@@ -148,14 +158,22 @@ function handleAddFormSubmit(data) {
     .finally(() => {
       newCardCreatorModal.handleLoad(false);
     });
-  addCardFormElement.reset();
-  newCardCreatorModal.close();
 }
 
 function handleProfileImageFormSubmit(data) {
-  api.updateProfilePicture(data.image);
-  userInfo.setProfileImage(data.image);
-  newProfileImageModal.close();
+  newProfileImageModal.handleLoad(true, "Saving...");
+  api
+    .updateProfilePicture(data.image)
+    .then(() => {
+      userInfo.setProfileImage(data.image);
+      newProfileImageModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      newProfileImageModal.handleLoad(false);
+    });
 }
 
 function handleImageClick(card) {
@@ -222,10 +240,6 @@ const newDeleteModal = new PopupWithButton(
   handleYesButtonClick
 );
 newDeleteModal.setEventListeners();
-
-function handleDeleteButton(card) {
-  newDeleteModal.open();
-}
 
 const api = new API({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",

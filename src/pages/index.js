@@ -71,6 +71,7 @@ function handleProfileFormSubmit({ name, discriptor }) {
       console.log(data);
       userInfo.setUserInfo({ name: name, about: discriptor });
       newProfileModal.close();
+      profileFormValidator.disableButton();
     })
     .catch((err) => {
       console.error(err);
@@ -151,6 +152,7 @@ function handleAddFormSubmit(data) {
       cardListCreator.setItem(cardElement);
       addCardFormElement.reset();
       newCardCreatorModal.close();
+      cardFormValidator.disableButton();
     })
     .catch((err) => {
       console.error(err);
@@ -167,6 +169,8 @@ function handleProfileImageFormSubmit(data) {
     .then(() => {
       userInfo.setProfileImage(data.image);
       newProfileImageModal.close();
+      profileImageForm.reset();
+      profileImageFormValidator.disableButton();
     })
     .catch((err) => {
       console.error(err);

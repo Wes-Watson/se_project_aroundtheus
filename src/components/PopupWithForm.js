@@ -30,8 +30,6 @@ class PopupWithForm extends Popup {
   handleLoad(isLoading, loadingText) {
     if (isLoading) {
       this._submitButton.textContent = loadingText;
-      console.log("loading");
-      console.log(this._submitButton);
     } else {
       this._submitButton.textContent = this._submitButtonText;
     }

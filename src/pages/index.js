@@ -116,7 +116,8 @@ function handleLikeButtonClick(card) {
   if (card.checkLike()) {
     api
       .removeLike(card.id)
-      .then(() => {
+      .then((res) => {
+        card.isLiked = res.isLiked;
         card.handleLikeButton(card.isLiked);
       })
       .catch((err) => {

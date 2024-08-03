@@ -20,11 +20,14 @@
       </header>
       <main class="content">
         <section class="profile">
+  <div class="profile__image-container">
           <img
             class="profile__image"
             src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Profile Image"
           />
+  <div class="profile__image-modal" type="button"></div>
+          </div>
           <div class="profile__container">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button class="profile__edit-button" type="button"></button>
@@ -132,6 +135,55 @@
         <p class="modal__image-description"></p>
       </div>
     </div>
+
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="delete-card-modal-close"
+          type="button"
+        ></button>
+        <p class="modal__header modal__header_yes">Are you sure?</p>
+          <button
+            class="modal__button modal__button_yes"
+            type="submit"
+          >
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="update-profile-image-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="card-modal-close"
+          type="button"
+        ></button>
+        <p class="modal__header">Change profile picture</p>
+        <form class="modal__form" id="update-profile-image-modal-form" novalidate>
+          <input
+            class="modal__input"
+            type="url"
+            name="image"
+            placeholder="Image URL"
+            id="profile-image-input"
+            required
+          />
+          <span class="modal__error" id="profile-image-input-error"></span>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
+
 
     <template id="card-template">
       <li class="card">
